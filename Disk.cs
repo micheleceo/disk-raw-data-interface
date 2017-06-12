@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Runtime.InteropServices;
 
@@ -112,13 +112,13 @@ namespace RAW_READER
         /// </remarks>
         public static unsafe byte[] ReadBlocks(long startingBlock, int numberOfBlocks, int blockSize, SafeStreamManager safeStreamManager)
         {
-            byte[] data = new byte[numberOfBlocks*blockSize];
+            byte[] data = new byte[numberOfBlocks * blockSize];
             if (!safeStreamManager.SH.IsInvalid)
             {
                 if (safeStreamManager.STR.CanRead)
                 {
-                    safeStreamManager.STR.Seek(startingBlock* blockSize, SeekOrigin.Begin);
-                    safeStreamManager.STR.Read(data, 0, numberOfBlocks* blockSize);
+                    safeStreamManager.STR.Seek(startingBlock * blockSize, SeekOrigin.Begin);
+                    safeStreamManager.STR.Read(data, 0, numberOfBlocks * blockSize);
                     return data;
                 }
             }
@@ -170,8 +170,8 @@ namespace RAW_READER
             {
                 if (safeStreamManager.STR.CanRead)
                 {
-                    safeStreamManager.STR.Seek(startingBlock* blockSize, SeekOrigin.Begin);
-                    safeStreamManager.STR.Write(data, 0, numberOfBlocks* blockSize);
+                    safeStreamManager.STR.Seek(startingBlock * blockSize, SeekOrigin.Begin);
+                    safeStreamManager.STR.Write(data, 0, numberOfBlocks * blockSize);
                     safeStreamManager.STR.Flush();
                     return 0;
                 }
