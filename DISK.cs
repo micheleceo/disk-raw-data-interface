@@ -106,7 +106,7 @@ namespace RAW_READER
         /// <param name="numberOfBlocks"></param>
         /// <param name="blockSize"></param>
         /// <param name="safeStreamManager"></param>
-        /// <returns></returns>
+        /// <returns>Read data array</returns>
         /// <remarks>
         /// You can read a maximum of 2GB block (4.194.304 blocks)
         /// </remarks>
@@ -183,7 +183,7 @@ namespace RAW_READER
         /// Drop the stream
         /// </summary>
         /// <param name="safeStreamManager"></param>
-        /// <returns></returns>
+        /// <returns>true=OK false=error</returns>
         public static unsafe bool DropStream(SafeStreamManager safeStreamManager)
         {
             try
