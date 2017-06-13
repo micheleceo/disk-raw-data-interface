@@ -106,19 +106,19 @@ namespace RAW_READER
         /// <param name="numberOfBlocks"></param>
         /// <param name="blockSize"></param>
         /// <param name="safeStreamManager"></param>
-        /// <returns></returns>
+        /// <returns>Read data array</returns>
         /// <remarks>
         /// You can read a maximum of 2GB block (4.194.304 blocks)
         /// </remarks>
         public static unsafe byte[] ReadBlocks(long startingBlock, int numberOfBlocks, int blockSize, SafeStreamManager safeStreamManager)
         {
-            byte[] data = new byte[numberOfBlocks*blockSize];
+            byte[] data = new byte[numberOfBlocks * blockSize];
             if (!safeStreamManager.SH.IsInvalid)
             {
                 if (safeStreamManager.STR.CanRead)
                 {
-                    safeStreamManager.STR.Seek(startingBlock* blockSize, SeekOrigin.Begin);
-                    safeStreamManager.STR.Read(data, 0, numberOfBlocks* blockSize);
+                    safeStreamManager.STR.Seek(startingBlock * blockSize, SeekOrigin.Begin);
+                    safeStreamManager.STR.Read(data, 0, numberOfBlocks * blockSize);
                     return data;
                 }
             }
@@ -170,8 +170,8 @@ namespace RAW_READER
             {
                 if (safeStreamManager.STR.CanRead)
                 {
-                    safeStreamManager.STR.Seek(startingBlock* blockSize, SeekOrigin.Begin);
-                    safeStreamManager.STR.Write(data, 0, numberOfBlocks* blockSize);
+                    safeStreamManager.STR.Seek(startingBlock * blockSize, SeekOrigin.Begin);
+                    safeStreamManager.STR.Write(data, 0, numberOfBlocks * blockSize);
                     safeStreamManager.STR.Flush();
                     return 0;
                 }
@@ -183,7 +183,7 @@ namespace RAW_READER
         /// Drop the stream
         /// </summary>
         /// <param name="safeStreamManager"></param>
-        /// <returns></returns>
+        /// <returns>true=OK false=error</returns>
         public static unsafe bool DropStream(SafeStreamManager safeStreamManager)
         {
             try
